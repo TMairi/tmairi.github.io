@@ -13,7 +13,7 @@ timezone: Europe/London
 
 # jekyll-seo-tag settings › https://github.com/jekyll/jekyll-seo-tag/blob/master/docs/usage.md
 # --------------------------
-title: Mairi                          # the main title
+title: "Mairis' Thoughts"                          # the main title
 
 tagline: Forensics, Linux, Physics and Linguistics  # it will display as the sub-title
 
