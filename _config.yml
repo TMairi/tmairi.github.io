@@ -1,77 +1,27 @@
-# The Site Configuration
-
-# Import the theme
 theme: jekyll-theme-chirpy
-
-# Only if your site type is GitHub Project sites and doesn't have a custom domain,
-# change below value to '/projectname'.
 baseurl: ''
-
-# the HTML language tag › https://www.w3.org/International/questions/qa-choosing-language-tags
 lang: en-UK
 timezone: Europe/London
+title: "Mairi's Constant"
+tagline: Forensics, Linux, Physics and Linguistics
+description: >-
+  DFIR, Digital Forensics, Security, Hacking, Linux, Physics, Linguistics
 
-# jekyll-seo-tag settings › https://github.com/jekyll/jekyll-seo-tag/blob/master/docs/usage.md
-# --------------------------
-title: Test                         # the main title
-
-tagline: Forensics, Linux, Physics and Linguistics  # it will display as the sub-title
-
-description: >-                        # used by seo meta and the atom feed
-  DFIR, Forensics, Linux, Physics, Linguistics
-
-# fill in the protocol & hostname for your site, e.g., 'https://username.github.io'
 url: 'https://tmairi.github.io'
-
 github:
-  username: TMairi             # change to your github username
-
-#twitter:
-#  username: AstrumMairi          # change to your twitter username
+  username: TMairi
+twitter:
+  username: AstrumMairi
 
 social:
-  # Change to your full name.
-  # It will be displayed as the default author of the posts and the copyright owner in the Footer
   name: Mairi
-  email: false             # change to your email address
+  email: false 
   links:
-    # The first element serves as the copyright owner's link
-    #- https://twitter.com/AstrumMairi      # change to your twitter homepage
-    #- https://github.com/TMairi       # change to your github homepage
-    # Uncomment below to add more social links
-    # - https://www.facebook.com/username
-    # - https://www.linkedin.com/in/username
-
-# Prefer color scheme setting.
-#
-# Note: Keep empty will follow the system prefer color by default,
-# and there will be a toggle to switch the theme between dark and light
-# on the bottom left of the sidebar.
-#
-# Available options:
-#
-#     light  - Use the light color scheme
-#     dark   - Use the dark color scheme
-#
+    - https://twitter.com/AstrumMairi     
+    - https://github.com/TMairi       
 theme_mode: dark  # [light|dark]
-
-# The CDN endpoint for images.
-# Notice that once it is assigned, the CDN url
-# will be added to all image (site avatar & posts' images) paths starting with '/'
-#
-# e.g. 'https://cdn.com'
-img_cdn: ''
-
-# the avatar on sidebar, support local or CORS resources
 avatar: assets/img/LOGO.png
-
-# boolean type, the global switch for ToC in posts.
 toc: true
-
-#disqus:
-#  comments: false  # boolean type, the global switch for posts comments.
-#  shortname: ''    # Fill with your Disqus shortname. › https://help.disqus.com/en/articles/1717111-what-s-a-shortname
-
 paginate: 10
 
 # ------------ The following options are not recommended to be modified ------------------
