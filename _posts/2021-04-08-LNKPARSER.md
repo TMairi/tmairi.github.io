@@ -62,13 +62,10 @@ Following this, the other structure I anticipated `BASH`-related problems with w
 
 With the LNK data structures and the potential issues I may encounter within `BASH` solved, I then looked to acquiring some valid LNK files I could use for testing the script as it was being developed. Luckily, I had access to Windows image files ranging from XP to 10, from which I could extract a rather modest sample size from. To bulk-extract these files from a given Windows image, I simply used the following `sleuthkit` commands:
 
-> `mmls image.raw`
-> 
-> `fls -o 63 -Fru image.raw > all.files`
-> 
-> `grep "\.lnk$" all.files | grep Recent | sed -n 's|^.* \(.*\):.*|\1|p' | sed -n 's|^\(.*\)-.*-.*|\1|p' > inodes`
-> 
-> `for inode in $(cat inodes); do icat -o 63 image.raw $inode > $i.lnk; done`
+`mmls image.raw`
+`fls -o 63 -Fru image.raw > all.files`
+`grep "\.lnk$" all.files | grep Recent | sed -n 's|^.* \(.*\):.*|\1|p' | sed -n 's|^\(.*\)-.*-.*|\1|p' > inodes`
+`for inode in $(cat inodes); do icat -o 63 image.raw $inode > $i.lnk; done`
 
 From the above commands, I use `mmls` to determine the starting sector offset value of the primary NTFS partition to query (`63`). Then I used `fls` to list all files `-F`, recursively looking in all directories `-r`, only for allocated (undeleted) files `-u`, and output the list to a file named `all.files`. I then used a combination of `grep` and `sed` to look for potentially user-created (Recent) LNK files, only display their corresponding MFT entry (inode) value and write the list to a file (`inodes`). Then simply use a `for` loop in combination with `icat` to iterate through these inode values and extract them. Once this process was repeated for multiple image files, I had over 200 LNK files ready to be tested.
 
