@@ -36,7 +36,7 @@ Looking at the data structures, it seemed that their offset values are relativel
 
 Interestingly, I also used a similar array comparison method to achieve the same results for the target file attribute data, also stored in the header structure. The next challenge from this structure was the timestamps, which required a conversion from `FILETIME` format to `Unix` time, to then be decoded with the following command:
 
-> `date -d@<UNIX_TIME>`
+`date -d@<UNIX_TIME>`
 
 As a result of my research, converting the timestamps was relatively easy to implement in shell script:
 
@@ -56,7 +56,7 @@ However, within these Shell Items, I came across another potential issue stemmin
 
 ### File Path Parsing
 
-Following this, the other structure I anticipated `BASH`-related problems with was **LINK_INFO**, specifically when dealing with the target file path (`LocalBasePath`). The reason I foresaw issues here is that the target file name could consist of many characters (especially on NTFS file systems) and there was no data within the LNK file to specify exactly how long this path. However, there was the `LocalBasePathOffset` within the **LINK_INFO** structure which would tell me where in the LNK file the file path began. Therefore, I figured I could calculate the length of the `LocalBasePath` by reading the data starting from the offset value, until it hit the NULL-terminated string called the `CommonPathSuffix`. Thus the data read between the offset and the NULL string would comprise the full target file path, which could then be converted into ASCII.
+Following this, the other structure I anticipated `BASH`-related problems with was **LINK_INFO**, specifically when dealing with the target file path (`LocalBasePath`). The reason I foresaw issues here is that the target file name could consist of many characters (especially on NTFS file systems) and there was no data within the LNK file to specify exactly how long this path was. However, there was the `LocalBasePathOffset` within the **LINK_INFO** structure which would tell me where in the LNK file the file path began. Therefore, I figured I could calculate the length of the `LocalBasePath` by reading the data starting from the offset value, until it hit the NULL-terminated string called the `CommonPathSuffix`. Thus the data read between the offset and the NULL string would comprise the full target file path, which could then be converted into ASCII.
 
 ### Extracting LNK Files
 
