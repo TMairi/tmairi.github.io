@@ -5,7 +5,6 @@ date: 2021-04-08 20:56:00 +0100
 categories: [DFIR, Linux]
 tags: [dfir, bash, linux, scripting]
 comments: false
-markdown: kramdown
 ---
 Forensic `BASH` script: [lnkparser](https://github.com/TMairi/lnkparser/blob/master/lnkparser)
 
@@ -92,9 +91,7 @@ Only a small handful of the files tested appeared to contain unicode characters 
 
 2.  The script does not parse out Network Share data
 
-Unfortunately, none of the samples I had to hand contained Network Share data under the `CommonNetworkRelativeLink` structure. Therefore, no parsers for this data have been written as I would not have been able to test them properly. Again, this requires more sample files, preferably with valid structures containing data in this particular structure to remedy[^Footnote Reference testing].
-
-[^1]: Footnote 1
+Unfortunately, none of the samples I had to hand contained Network Share data under the `CommonNetworkRelativeLink` structure. Therefore, no parsers for this data have been written as I would not have been able to test them properly. Again, this requires more sample files, preferably with valid structures containing data in this particular structure to remedy.
 
 ## Conclusion
 
