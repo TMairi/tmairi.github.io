@@ -5,6 +5,7 @@ date: 2021-04-08 20:56:00 +0100
 categories: [DFIR, Linux]
 tags: [dfir, bash, linux, scripting]
 comments: false
+markdown: kramdown
 ---
 Forensic `BASH` script: [lnkparser](https://github.com/TMairi/lnkparser/blob/master/lnkparser)
 
