@@ -95,6 +95,6 @@ Unfortunately, none of the samples I had to hand contained Network Share data un
 
 ## Conclusion
 
-In conclusion, the script was deemed complete and working as intended and was then released onto my GitHub page, which you can find [here](https://github.com/TMairi/lnkparser). If you have any recommendations or questions about this script, or the development process outline above, you can contact me on [Twitter](https://twitter.com/AstrumMairi).
+In conclusion, the script was deemed complete and working as intended and was then released onto my GitHub page, which you can find [here](https://github.com/TMairi/lnkparser). If you have any recommendations or questions about this script, or the development process outline above, you can contact me on [Twitter](https://twitter.com/AstrumMairi)^[Reference Test].
 
 -- Mairi
