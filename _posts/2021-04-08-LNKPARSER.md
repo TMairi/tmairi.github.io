@@ -91,10 +91,12 @@ Only a small handful of the files tested appeared to contain unicode characters 
 
 2.  The script does not parse out Network Share data
 
-Unfortunately, none of the samples I had to hand contained Network Share data under the `CommonNetworkRelativeLink` structure. Therefore, no parsers for this data have been written as I would not have been able to test them properly. Again, this requires more sample files, preferably with valid structures containing data in this particular structure to remedy.
+Unfortunately, none of the samples I had to hand contained Network Share data under the `CommonNetworkRelativeLink` structure. Therefore, no parsers for this data have been written as I would not have been able to test them properly. Again, this requires more sample files, preferably with valid structures containing data in this particular structure to remedy[^1].
 
 ## Conclusion
 
 In conclusion, the script was deemed complete and working as intended and was then released onto my GitHub page, which you can find [here](https://github.com/TMairi/lnkparser). If you have any recommendations or questions about this script, or the development process outline above, you can contact me on [Twitter](https://twitter.com/AstrumMairi).
 
 -- Mairi
+
+[^1]: This is a footnote
