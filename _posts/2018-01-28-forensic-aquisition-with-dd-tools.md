@@ -40,7 +40,7 @@ In addition, these block devices will often have similar files denoting partitio
 
 ### In a Forensic Environment
 
-In the context of digital forensic investigation; the `dd` tool and its derivatives can be used to read data from the device file of an attached drive and write this data to a raw image file. Bear in mind that the data you acquire from a device such as a hard drive, may not necessarily be complete (see '**Data completeness**' section below). The resulting raw image file can then be easily imported into an appropriate analysis suite, or interrogated with other command-line tools. 
+In the context of digital forensic investigation; the `dd` tool and its derivatives can be used to read data from the device file of an attached drive and write this data to a raw image file. Bear in mind that the data you acquire from a device such as a hard drive, may not necessarily be complete (see '**Data Completeness**' section below). The resulting raw image file can then be easily imported into an appropriate analysis suite, or interrogated with other command-line tools. 
 
 I personally prefer to use Linux for performing digital forensics whenever I can, and I find `dd`, along with its variants, to be invaluable tools. I would highly recommend using low-level command-line tools like `dd` to better understand the forensic process before utilizing the well-known commercial tools.
 
@@ -87,7 +87,7 @@ With UAS; the SCSI command set is used for communicating with the USB device and
 
 As mentioned previously, the standard `dd` tool is installed by default on most GNU/Linux distributions under the `coreutils` package[^8]. Using `dd` on the Linux command-line is very simple and given the block device we want to image is `/dev/sdb`, a typical `dd` command might look like this:
 
-```shell
+```plaintext
 dd if=/dev/sdb of=USB_image.dd bs=4k conv=noerror,sync status=progress
 ```
 
@@ -102,7 +102,7 @@ dd if=/dev/sdb of=USB_image.dd bs=4k conv=noerror,sync status=progress
 
 I personally do not use traditional `dd` for forensic imaging, however, it is very useful when extracting key excerpts of data from a drive. For example, the following `dd` command will extract the first 512 bytes of the accessible data, known as the Master Boot Record (MBR):
 
-```shell
+```plaintext
 dd if=/dev/sdb of=USB_mbr.dd bs=512 count=1
 ```
 
@@ -133,7 +133,7 @@ Most of the common Linux distributions contain `dcfldd` in their core repositori
 
 When using `dcfldd` on the Linux command-line; given the block device we want to image is `/dev/sdb`, a typical command would look like this: 
 
-```shell
+```plaintext
 dcfldd if=/dev/sdb of=USB_Image.dd of=USB_Image2.dd bs=4k conv=noerror,sync hash=sha256 hashwindow=100MB sha256log=USB_Image.hash
 ```
 ### DCFLDD Parameters
@@ -157,7 +157,7 @@ Again, most of the common Linux distributions contain `dc3dd` in their core repo
 
 Using `dc3dd` on the Linux command-line has plenty of options for forensic examiners. Given the block device we want to image is `/dev/sdb`, a typical `dc3dd` command would look like this: 
 
-```shell
+```plaintext
 dc3dd if=/dev/sdb hof=USB_Image.dd log=USB_Image.log hash=sha256 hash=sha512 hlog=USB_Image.hash
 ```
 
@@ -185,7 +185,7 @@ Like the previous two tools, `ddrescue` is fairly easy to install on most Linux 
 
 Despite being more oriented towards data recovery, `ddrescue` still provides options which will prove useful for forensic practitioners. As before, assuming the device we want to image is `/dev/sdb`, a typical `ddrescue` command would look like this:
 
-```shell
+```plaintext
 ddrescue -d /dev/sdb USB_Image.dd USB_Image.map
 ```
 ### DDRESCUE Parameters
