@@ -1,7 +1,7 @@
 ---
 title: Forensic Acquisition with DD Tools
 author: Mairi
-date: 2018-01-28 00:00:00 +0100
+date: 2018-01-28 01:00:00 +0100
 categories: [DFIR, Linux]
 tags: [dfir, linux]
 comments: false
