@@ -91,7 +91,9 @@ Only a small handful of the files tested appeared to contain unicode characters 
 
 2.  The script does not parse out Network Share data
 
-Unfortunately, none of the samples I had to hand contained Network Share data under the `CommonNetworkRelativeLink` structure. Therefore, no parsers for this data have been written as I would not have been able to test them properly. Again, this requires more sample files, preferably with valid structures containing data in this particular structure to remedy.
+Unfortunately, none of the samples I had to hand contained Network Share data under the `CommonNetworkRelativeLink` structure. Therefore, no parsers for this data have been written as I would not have been able to test them properly. Again, this requires more sample files, preferably with valid structures containing data in this particular structure to remedy[^Footnote Reference testing].
+
+[^1]: Footnote 1
 
 ## Conclusion
 
