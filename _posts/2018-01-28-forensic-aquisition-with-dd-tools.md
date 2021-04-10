@@ -9,9 +9,9 @@ comments: false
 
 ## Foreword
 
-> **DISCLAIMER**: This article was written by myself and was previously posted on a now-defunct website on 2018-01-28. I backed up the original contents of the article prior to the website shut-down and am now reposting it here for preservation. All information was correct and accurate at the time this article was written.
-
 This article will be focusing on the usage of the Linux tool `dd` in the forensic imaging process, along with several tools that have been derived from it. In addition to briefly covering the issue of data completeness when preparing to conduct forensic acquisition.
+
+> **DISCLAIMER**: This article was written by myself and was previously posted on a now-defunct website on 2018-01-28. I backed up the original contents of the article prior to the website shut-down and am now reposting it here for preservation. All information was correct and accurate at the time this article was written.
 
 ## Introduction
 
