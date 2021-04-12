@@ -39,8 +39,7 @@ kramdown:
 # DO NOT change this unless you're a Pro user on Jekyll and Web development,
 # Or you think you're smart enough to change other relevant URLs within this template.
 #permalink: /posts/:title/
-permatype: micro
-link: /:year/:month/:title/
+permalink: :year/:month/:title/
 
 collections:
   tabs:
@@ -55,8 +54,6 @@ defaults:
       type: posts
     values:
       layout: post
-      permatype: micro    ## New
-      link: :title/       ## New
       comments: false
       toc: true
   -
