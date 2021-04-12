@@ -39,7 +39,7 @@ kramdown:
 # DO NOT change this unless you're a Pro user on Jekyll and Web development,
 # Or you think you're smart enough to change other relevant URLs within this template.
 #permalink: /posts/:title/
-permalink: /:year/:month/:title/
+#permalink: /:year/:month/:title/
 
 collections:
   tabs:
@@ -54,6 +54,7 @@ defaults:
       type: posts
     values:
       layout: post
+      permalink: /:year/:month/:title/
       comments: false
       toc: true
   -
@@ -67,8 +68,7 @@ defaults:
       type: tabs
     values:
       layout: page
-      permalink: /:year/:month/:title/
-      #permalink: /:title/
+      permalink: /:title/
       dynamic_title: true
 
 sass:
