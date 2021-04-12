@@ -19,7 +19,7 @@ social:
   links:
     - https://twitter.com/AstrumMairi     
     - https://github.com/TMairi       
-theme_mode: dark  # [light|dark]
+theme_mode: dark
 avatar: assets/img/LOGO.png
 toc: true
 paginate: 10
@@ -28,9 +28,8 @@ paginate: 10
 
 kramdown:
   syntax_highlighter: rouge
-  syntax_highlighter_opts:   # Rouge Options › https://github.com/jneen/rouge#full-options
+  syntax_highlighter_opts:
     css_class: highlight
-    # default_lang: console
     span:
       line_numbers: false
     block:
@@ -39,7 +38,8 @@ kramdown:
 
 # DO NOT change this unless you're a Pro user on Jekyll and Web development,
 # Or you think you're smart enough to change other relevant URLs within this template.
-permalink: /posts/:title/
+#permalink: /posts/:title/
+permalink: /:year/:month/:title/
 
 collections:
   tabs:
@@ -54,8 +54,8 @@ defaults:
       type: posts
     values:
       layout: post
-      comments: true    # Enable comments in posts.
-      toc: true         # Display TOC column in posts.
+      comments: false
+      toc: true
   -
     scope:
       path: _drafts
