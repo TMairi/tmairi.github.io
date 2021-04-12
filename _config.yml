@@ -54,7 +54,7 @@ defaults:
       type: posts
     values:
       #layout: post
-      permalink: /:year/:month/:title/
+      permalink: /:year/:month/:title.html
       comments: false
       toc: true
   -
