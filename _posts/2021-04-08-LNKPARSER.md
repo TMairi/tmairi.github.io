@@ -1,5 +1,5 @@
 ---
-permalink: /:year/:month/:title/
+permalink: /:year/:month/:title:output_ext
 title: "Forensic BASH Scripting: LNK Parsing"
 author: Mairi
 date: 2021-04-08 20:56:00 +0100
