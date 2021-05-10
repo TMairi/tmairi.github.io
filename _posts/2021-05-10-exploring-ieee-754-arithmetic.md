@@ -165,7 +165,7 @@ $$0.000000000000000000000000001672621923$$
 
 Whereas in scientific notation, this value would be written as follows:
 
-$1.672621923 × 10^{-27}$
+$ 1.672621923 × 10^{-27} $
 
 You should be able to immediately see how much more convenient it is to write a very small value in this notation. We can easily illustrate this notation by converting it into a formula, as follows:
 
