@@ -3,10 +3,6 @@ layout: default
 # The posts' layout
 ---
 
-{% assign tooltip_df = site.data.date_format.tooltip | default: '%a, %b %e, %Y, %l:%M %p %z' %}
-{% assign post_long_df = site.data.date_format.post.long | default: '%b %e, %Y' %}
-{% assign post_short_df = site.data.date_format.post.short | default: '%b %e' %}
-
 <div class="row">
 
   <div id="post-wrapper" class="col-12 col-lg-11 col-xl-8">
@@ -21,12 +17,11 @@ layout: default
           <span class="semi-bold">
             {{ page.author | default: site.social.name }}
           </span>
-            {{ include.date | date: post_long_df }}
-<!--          {% include timeago.html date=page.date prep="on" tooltip=true %} -->
+          {% include timeago.html date=page.date prep="on" tooltip=true %}
         </div>
-<!--
+
         <div>
-          
+          <!-- lastmod -->
           {% if page.last_modified_at %}
           <span>
             {% include timeago.html date=page.last_modified_at
@@ -34,16 +29,16 @@ layout: default
           </span>
           {% endif %}
 
-          
+          <!-- read time -->
           {% include read-time.html content=content %}
 
-          
+          <!-- page views -->
           {% if site.google_analytics.pv.enabled %}
           <span id="pv" class="pageviews"><i class="fas fa-spinner fa-spin fa-fw"></i></span>
           {% endif %}
 
         </div>
--->
+
       </div> <!-- .post-meta -->
 
       <div class="post-content">
