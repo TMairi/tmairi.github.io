@@ -161,7 +161,7 @@ To further understand this concept of significant figures and exponents, which p
 
 In the world of physics; particularly astronomy and astrophysics, scientists will often find themselves performing calculations with exceptionally large or small numbers. Writing these numbers out normally as they appear would be inefficient and tedious. Therefore, scientific notation is commonly used instead to represent these values. For instance, the mass of a proton (in kilograms - `kg`), often denoted by $p$ or $p^+$, written as a real number is as follows[^2]:
 
-$0.000000000000000000000000001672621923$
+$$0.000000000000000000000000001672621923$$
 
 Whereas in scientific notation, this value would be written as follows:
 
@@ -558,20 +558,6 @@ Indeed, as with everything in science and especially in cyber, you should always
 If you have any recommendations or questions about the topics mentioned in this article, you can contact me on [Twitter](https://twitter.com/AstrumMairi).
 
 -- Mairi
-
-$$ \sum_{n=1}^\infty 1/n^2 = \frac{\pi^2}{6} $$
-
-
-
-When $a \ne 0$, there are two solutions to $ax^2 + bx + c = 0$ and they are
-
-
-
-$$ x = {-b \pm \sqrt{b^2-4ac} \over 2a} $$
-
-
-
-
 
 ## References
 
