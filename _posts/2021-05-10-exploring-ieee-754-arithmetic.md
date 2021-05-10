@@ -40,7 +40,7 @@ return 0;
 
 After compiling this code on my Linux system using `gcc`, I then opened the binary file using `r2` and ran the following commands (*output truncated*):
 
-```shell
+```
 [0x00401020]> aaa
 [ . . . ]
 [0x00401020]> afl
@@ -69,7 +69,7 @@ Reviewing assembly code like the sample above can be quite intimidating, however
 
 Continuing, the hexadecimal value `0x2a` is then stored in the `rbp-0x4` register (which I renamed to `int`, given I know the source code already) and then the value `0x4d` is stored in the `rbp-0x5` register (renamed to `char`). These two values can already be cross-referenced with our source code, as converting the them into decimal (base 10) using `rax2` gives us the value of our variables:
 
-```sh
+```
 [0x00401106]> rax2 0x2a
 42
 [0x00401106]> rax2 0x4d
@@ -78,13 +78,13 @@ Continuing, the hexadecimal value `0x2a` is then stored in the `rbp-0x4` registe
 
 Here we can see that our integer variable is correct at `42`, as specified in the `C` program. However, we did not specify an integer for the second variable, but a character. Therefore, if we search an ASCII table for the decimal value `77`, we will see that it corresponds to our specified character 'M'. A handy ASCII table can be displayed within `r2` by using the following `rax2` command:
 
-```shell
+```
 [0x00401106]> rax2 -a
 ```
 
 The next two variables are a little bit more complicated. You might be tempted to simply convert the hexadecimal values you see in square brackets straight to decimal, just like with the integer variable, however doing so would result in the following:
 
-```shell
+```
 [0x00401106]> rax2 0x00402010
 4202512
 ```
@@ -93,7 +93,7 @@ This is obviously not the correct value, and in fact, the hexadecimal string we 
 
 But what is the value in memory being pushed to the `xmm0` register? Well we know by looking at the source code that it must be the value `5.5`, the question is how do we extrapolate this value using `r2`? In fact, there are two ways we can ascertain the value being moved into the `xmm0` register. The first involves simply looking at a hexadecimal dump of the address being moved into the `xmm0` register, as follows:
 
-```shell
+```
 [0x00401106]> pxw @ 0x00402010
 0x00402010  0x40b00000 0x00000000 0x51eb851f 0x40091eb8  ...@.......Q...@
 [ . . . ]
@@ -101,7 +101,7 @@ But what is the value in memory being pushed to the `xmm0` register? Well we kno
 
 In the output above, we can see the hexadecimal value `0x40b00000`, which could be our floating point value. To check, we can simply run `rax2` again using the `Fx` parameter to specify a floating-point number:
 
-```shell
+```
 [0x00401106]> rax2 Fx40b00000
 5.500000f
 ```
@@ -110,7 +110,7 @@ However, we can further verify that this is the correct value by examining the c
 
 > **ATTENTION**: It is not recommended to execute a binary using `r2` outside of a virtualised environment, especially when you are dealing with unknown binaries or potential malware. In this case, I created the source code for the binary being analysed, so there is no risk of damage to my system. Please exercise caution when executing binaries unless you know what you are doing.
 
-```shell
+```
 [0x00401115]> dc
 hit breakpoint at: 0x40111d
 [0x0040111d]> dr xmm0
@@ -123,7 +123,7 @@ As you can see, we get a 16-byte hexadecimal value which matches the previous va
 
 If we repeat the process we used for the `float` variable, but this time for the `double` variable; these are the results we end up with:
 
-```shell
+```
 [0x00401106]> pxq @ 0x00402018
 0x00402018  0x40091eb851eb851f  0x000000343b031b01   ...Q...@...;4...
 [ . . . ]
