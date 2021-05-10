@@ -9,7 +9,7 @@ $(function() {
   let toRefresh = timeagoElem.length;
 
   let intervalId = void 0;
-
+/*
   function timeago(iso, preposition) {
     let now = new Date();
     let past = new Date(iso);
@@ -52,7 +52,7 @@ $(function() {
 
     return "just now";
   }
-
+*/
   function updateTimeago() {
     $(".timeago").each(function() {
       if ($(this).children("i").length > 0) {
