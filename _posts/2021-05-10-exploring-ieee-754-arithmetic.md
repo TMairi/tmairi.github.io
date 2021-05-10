@@ -171,7 +171,7 @@ You should be able to immediately see how much more convenient it is to write a 
 
 \\(M × 10^n\\)
 
-In this formula, $n$ is our `exponent` value, denoted by an integer. The \\(M\\) value is known as the `significand` (also commonly referred to as the `coefficient` or `mantissa`)[^3]. Using the scientific notation for the mass of a proton above, we can say that the exponent is `-27` and the `significand` is `1.672621898`. However, it is important to note that this value can also be written as the following:
+In this formula, \\(n\\) is our `exponent` value, denoted by an integer. The \\(M\\) value is known as the `significand` (also commonly referred to as the `coefficient` or `mantissa`)[^3]. Using the scientific notation for the mass of a proton above, we can say that the exponent is `-27` and the `significand` is `1.672621898`. However, it is important to note that this value can also be written as the following:
 
 \\(16.72621923 × 10^{-28}\\)
 \\(167.2621923 × 10^{-29}\\)
@@ -180,17 +180,17 @@ Hence, this is why we would say that the leading `1` is the most significant dig
 
 ### Rounding Significant Figures
 
-One issue commonly encountered in the realm of significant digits is that of **rounding**. Since we know that the number of significant digits a value has correlates to its overall precision, this means that data is lost when the value is [rounded off](https://en.wikipedia.org/wiki/Round-off_error). One example is the value for the speed of light in a vacuum, denoted by $c$ and measured in metres per second (m/s), is[^4]:
+One issue commonly encountered in the realm of significant digits is that of **rounding**. Since we know that the number of significant digits a value has correlates to its overall precision, this means that data is lost when the value is [rounded off](https://en.wikipedia.org/wiki/Round-off_error). One example is the value for the speed of light in a vacuum, denoted by \\(c\\) and measured in metres per second (m/s), is[^4]:
 
-$2.99792458 × 10^8$
+\\(2.99792458 × 10^8\\)
 
 However, you may see this value being rounded to one significant figure, as shown below:
 
-$3 × 10^8$
+\\(3 × 10^8\\)
 
 Although this may seem inconsequential, in actuality this may cause accuracy problems when dealing with very precise calculations. The issue of rounding when dealing with the number of significant digits can also be demonstrated with arithmetic involving decimal numbers:
 
-$1.8 × 4.49$
+\\(1.8 × 4.49\\)
 
 Here we are multiplying a number with two significant digits against a number with three significant digits. A standard calculator would probably tell you that the result of this multiplication would be `8.08`, however the actual answer would be rounded to `8.1`. This is due to `1.8` only having two significant digits, meaning the answer must also have two significant digits, to account for the difference in precision between the two values. It is important to note that rounding in this way should **ONLY** be performed at the end of the calculation. If we were to then further multiply the original answer by `1.7` for example, you would multiply this by `8.08` and **NOT** `8.1`. This is done to prevent data loss in the calculation[^5].
 
@@ -206,27 +206,27 @@ Before we dive into the storage of floating-point values, it is important to not
 
 The representation of floating-point values, as defined by the IEEE 754 standard is as follows:
 
-$(-1)^{s} × b^e × M$
+\\((-1)^{s} × b^e × M\\)
 
 I like to think of this as a formula, which can be broken down into the following values:
 
-- $s$ : The `sign` value
-- $b$ : The `base` system in use
-- $e$ : The `exponent` value
-- $M$ : The `significand` (or `mantissa`) value
+- \\(s\\) : The `sign` value
+- \\(b\\) : The `base` system in use
+- \\(e\\) : The `exponent` value
+- \\(M\\) : The `significand` (or `mantissa`) value
 
-The `base` is simply our radix, which can be either `2`, to represent binary, or `10` to represent decimal. In this case, we will be working primarily with a binary radix, hence we can say at this point that: $b = 2$ . Additionally, it is worth noting that in the IEEE 754 standard, the number of digits in the `significand` determines our level of precision, denoted by $p$. For example; in single precision values, $M$ would consist of 23 bits, with one additional stored as the 'hidden bit' (sometimes known as the 'leading bit'), which will be explained in further detail later[^7].
+The `base` is simply our radix, which can be either `2`, to represent binary, or `10` to represent decimal. In this case, we will be working primarily with a binary radix, hence we can say at this point that: \\(b = 2\\) . Additionally, it is worth noting that in the IEEE 754 standard, the number of digits in the `significand` determines our level of precision, denoted by \\(p\\). For example; in single precision values, \\(M\\) would consist of 23 bits, with one additional stored as the 'hidden bit' (sometimes known as the 'leading bit'), which will be explained in further detail later[^7].
 
 Finally, the `exponent` is broken up into two additional parameters for granularity, these are:
 
-- $emax$ : The maximum `exponent` value
-- $emin$ : The minimum `exponent` value
+- \\(emax\\) : The maximum `exponent` value
+- \\(emin\\) : The minimum `exponent` value
 
 Since we know what `base` we are working in, we simply need to extract our `sign`, `exponent` and `significand` from the binary string we are working with to complete the conversion. In the disassembly of `C` variables earlier in the article, we found that the hexadecimal string `0x40b00000` corresponded to the floating-point value `5.5`. Using the logic outlined by the IEEE 754 standard, we can take this string as a control variable to hopefully convert it into the correct single precision floating-point value.
 
 ### Parameter Breakdown
 
-Now we have our hexadecimal string `0x40b00000`, first of all we need to convert this into binary, since we will be working with a `base` $b$ value of `2`. This is relatively easy to do manually, however you can use the `bc` tool on Linux to do this conversion for you. For example, the following command will convert our hexadecimal string to binary on the command-line[^8]:
+Now we have our hexadecimal string `0x40b00000`, first of all we need to convert this into binary, since we will be working with a `base` \\(b\\) value of `2`. This is relatively easy to do manually, however you can use the `bc` tool on Linux to do this conversion for you. For example, the following command will convert our hexadecimal string to binary on the command-line[^8]:
 
 ```shell
 $  echo "obase=2; ibase=16; 40B00000" | bc
@@ -256,17 +256,17 @@ Here we can see that `23` bits are allocated for the `significand`, `8` bits for
 
 ### Sign
 
-First, we shall take a look at the value of the `sign`; $s$ . In the example above, we can see that our `sign` simply has the value `0`. Therefore, substituting this value into the formula, we will get the following:
+First, we shall take a look at the value of the `sign`; \\(s\\) . In the example above, we can see that our `sign` simply has the value `0`. Therefore, substituting this value into the formula, we will get the following:
 
-$(-1)^{0} × 2^e × M$
+\\((-1)^{0} × 2^e × M\\)
 
-Here, we can calculate $(-1)^0$ to be `1`, therefore we now know that our resulting floating-point value will be a positive number. The only other value $s$ can possibly be is `1`, which will result in $(-1)^1$ which equals `-1`. Hence, we can reliably determine that when $s$ equals `1`, the floating-point value is negative, and when $s$ equals `0`, it will be positive. Finally, we can say that our formula for the conversion at this stage will now be:
+Here, we can calculate \\((-1)^0\\) to be `1`, therefore we now know that our resulting floating-point value will be a positive number. The only other value \\(s\\) can possibly be is `1`, which will result in \\((-1)^1\\) which equals `-1`. Hence, we can reliably determine that when \\(s\\) equals `1`, the floating-point value is negative, and when \\(s\\) equals `0`, it will be positive. Finally, we can say that our formula for the conversion at this stage will now be:
 
-$1 × 2^e × M$
+\\(1 × 2^e × M\\)
 
 ### Exponent
 
-Now for the `exponent` value; $e$ . In our example, the bits covering this parameter are `10000001`, which we can convert into decimal form to get our value for $e$ . Again, this is relatively easy to do manually, however we can use the Linux tool `bc` to perform this conversion for us:
+Now for the `exponent` value; \\(e\\) . In our example, the bits covering this parameter are `10000001`, which we can convert into decimal form to get our value for \\(e\\) . Again, this is relatively easy to do manually, however we can use the Linux tool `bc` to perform this conversion for us:
 
 ```shell
 $  echo "obase=10; ibase=2; 10000001" | bc
@@ -280,34 +280,34 @@ Two's complement is very useful for storing negative numbers in binary form. For
 
 It is very helpful to note that in 8-bit binary values using two's complement, the largest possible value is not `255`, which you would normally expect from `11111111`, but it is instead `127`, represented by `01111111`. This is because the first bit is the `sign`, telling us whether the value is positive or negative. Similarly, this means that the smallest possible value is `-127`, resulting from `11111111` where we take the first bit as the `sign`[^12].
 
-Therefore, we can extrapolate that given an 8-bit `exponent`, the $emax$ would be `127` and $emin$ would be `-126`. If you are wondering why the $emin$ value is not `-127`, it is simply because the IEEE standard specifies that $emin$ shall be $1-emax$ for all formats. Meaning `1-127` results in $emin$ being `-126`.
+Therefore, we can extrapolate that given an 8-bit `exponent`, the \\(emax\\) would be `127` and \\(emin\\) would be `-126`. If you are wondering why the \\(emin\\) value is not `-127`, it is simply because the IEEE standard specifies that \\(emin\\) shall be \\(1-emax\\) for all formats. Meaning `1-127` results in \\(emin\\) being `-126`.
 
-Since the unsigned binary `exponent` in our floating-point calculation is not stored as two's complement, we need to account for the `bias` (or offset). This is a very simple calculation, where the `bias` is denoted by $k$ and uses this formula[^13]:
+Since the unsigned binary `exponent` in our floating-point calculation is not stored as two's complement, we need to account for the `bias` (or offset). This is a very simple calculation, where the `bias` is denoted by \\(k\\) and uses this formula[^13]:
 
-$k = 2^{n-1}-1$
+\\(k = 2^{n-1}-1\\)
 
-Where $n$ in this case is the number of bits in our `biased exponent`. Substituting in the value of $n$ from our previous example; `8`, this gives us the following results:
+Where \\(n\\) in this case is the number of bits in our `biased exponent`. Substituting in the value of \\(n\\) from our previous example; `8`, this gives us the following results:
 
-$k = 2^{8-1}-1$
+\\(k = 2^{8-1}-1\\)
 
-This results in `127`, which we already know is the $emax$ value for 8-bit `exponents`. Therefore, to adjust for the `bias`, we simply subtract this value from our original calculation for $e$; `129 - 127` and we find that our adjusted `exponent` $e$ , is `2`. With the `exponent` properly adjusted, we can now add this value to our formula, as follows:
+This results in `127`, which we already know is the \\(emax\\) value for 8-bit `exponents`. Therefore, to adjust for the `bias`, we simply subtract this value from our original calculation for \\(e\\); `129 - 127` and we find that our adjusted `exponent` \\(e\\) , is `2`. With the `exponent` properly adjusted, we can now add this value to our formula, as follows:
 
-$1 × 2^2 × M$
+\\(1 × 2^2 × M\\)
 
-Interestingly, since we already know the number $n$ of bits in the `exponent` $e$ between single, double and quadruple precision values, we can pre-calculate their `bias` by using the formula for $k$ above:
+Interestingly, since we already know the number \\(n\\) of bits in the `exponent` \\(e\\) between single, double and quadruple precision values, we can pre-calculate their `bias` by using the formula for \\(k\\) above:
 
 |     | SINGLE | DOUBLE | QUADRUPLE |
 | --- | --- | --- | --- |
 | **EXPONENT BITS** | 8   | 11  | 15  |
-| **BIAS FORMULA** | $2^{8-1}-1$ | $2^{11-1}-1$ | $2^{15-1}-1$ |
-| **BIAS VALUE ($emax$)** | 127 | 1023 | 16383 |
-| **BIAS VALUE ($emin$)** | -126 | -1022 | -16382 |
+| **BIAS FORMULA** | \\(2^{8-1}-1\\) | \\(2^{11-1}-1\\) | \\(2^{15-1}-1\\) |
+| **BIAS VALUE (\\(emax\\))** | 127 | 1023 | 16383 |
+| **BIAS VALUE (\\(emin\\))** | -126 | -1022 | -16382 |
 
-Now that we have interpreted the $s$ (`sign`) and the $e$ (`exponent`) values, it is time to move onto the final piece of the puzzle; the $M$ (`significand`).
+Now that we have interpreted the \\(s\\) (`sign`) and the \\(e\\) (`exponent`) values, it is time to move onto the final piece of the puzzle; the \\(M\\) (`significand`).
 
 ### Significand (Mantissa)
 
-Put simply; the `significand` is the part of the floating-point value which contains its significant digits. You may recall that the number of significant digits in the `significand` correlates to the level of precision we are working with. In our example floating-point conversion, we are dealing with a 32-bit single precision value, which gives us a 23-bit `signficand`. The binary value for $M$ in our calculation was found to be:
+Put simply; the `significand` is the part of the floating-point value which contains its significant digits. You may recall that the number of significant digits in the `significand` correlates to the level of precision we are working with. In our example floating-point conversion, we are dealing with a 32-bit single precision value, which gives us a 23-bit `signficand`. The binary value for \\(M\\) in our calculation was found to be:
 
 - `01100000000000000000000`
 
@@ -319,13 +319,13 @@ Therefore, if we add our implied bit to our example `significand`, we get the fo
 
 It is worth noting at this stage, that we can omit the trailing zeros from the `significand`, leaving us with `1.011`. Substituting this value into our formula (and re-arranging it a bit), we will form the following:
 
-$1.011 × 2^2$
+\\(1.011 × 2^2\\)
 
 Note how we have also omitted the `sign` value as it simply determines whether our resulting value is positive or negative, and we already know this value will be positive. The above may look familiar to a value in scientific notation, meaning we can extrapolate the full value by expanding the formula to give us the following:
 
 - `101.1`
 
-Now it is a simple case of converting this value to its final decimal equivalent. Again, the mathematics behind this is very simple; we simply perform $2^x$ where $x$ is a set bit value. The following illustrates this in action:
+Now it is a simple case of converting this value to its final decimal equivalent. Again, the mathematics behind this is very simple; we simply perform \\(2^x\\) where \\(x\\) is a set bit value. The following illustrates this in action:
 
 ```plaintext
 BIT VALUE: | 2 | 1 | 0 | . | -1 |
@@ -334,19 +334,19 @@ BINARY:    | 1 | 0 | 1 | . |  1 |
 
 As you can see, only the bit values `2`, `0` and `-1` are set. Hence the final calculation we perform is the following:
 
-$2^2 + 2^0 + 2^{-1} = 4 + 1 + 0.5$
+\\(2^2 + 2^0 + 2^{-1} = 4 + 1 + 0.5\\)
 
 This results in our floating-point value of `5.5`, which is correct to what we set in the original `C` program. However, this is not the end of the discussion about the `significand`, as we have certain exceptions to deal with, such as 'subnormal' values.
 
 ### Subnormal Values
 
-As we laid out in the `significand`, the 'hidden bit' is added to the mantissa when we are dealing with normal numbers. In this case, a normal number is defined as any value where the `exponent` $e$ is greater than `-126`, but less than `128`:
+As we laid out in the `significand`, the 'hidden bit' is added to the mantissa when we are dealing with normal numbers. In this case, a normal number is defined as any value where the `exponent` \\(e\\) is greater than `-126`, but less than `128`:
 
-$-126<e<128$
+\\(-126<e<128\\)
 
-However, what happens when our `biased exponent` is `0`? Such an event occurs when all the bits in the `exponent` are `0`, meaning when we adjust for the `bias`, the resulting value for $e$ will be `-127`, which falls outside of our defined $emin$ number for single precision values[^15]. According to the IEEE 754 standard, when $e=0$ and $M \ne 0$ , then the value is 'subnormal' and needs a slightly different calculation. In such instances, the formula we would use is as follows:
+However, what happens when our `biased exponent` is `0`? Such an event occurs when all the bits in the `exponent` are `0`, meaning when we adjust for the `bias`, the resulting value for \\(e\\) will be `-127`, which falls outside of our defined \\(emin\\) number for single precision values[^15]. According to the IEEE 754 standard, when \\(e=0\\) and \\(M \ne 0\\) , then the value is 'subnormal' and needs a slightly different calculation. In such instances, the formula we would use is as follows:
 
-$(-1)^{s} × 2^{emin} × M$
+\\((-1)^{s} × 2^{emin} × M\\)
 
 Essentially, the 'hidden bit' becomes `0` when dealing with subnormal values. For instance, the hexadecimal value `0x007fffff`, when converted into a single precision floating-point value, represents the largest subnormal number possible for this precision level. Breaking this hexadecimal string down into binary format to extract the `sign`, `exponent` and `significand` illustrates this:
 
@@ -360,19 +360,19 @@ As you can see; the `sign` is `0` so we know the final value will be positive. T
 
 - `0.11111111111111111111111`
 
-Converting this value into decimal is actually very simple given the fact that every bit is `1`. Since we know there are twenty-three bits in the fractional part of the `significand`, we can simply perform the following calculation to figure out the value of $M$:
+Converting this value into decimal is actually very simple given the fact that every bit is `1`. Since we know there are twenty-three bits in the fractional part of the `significand`, we can simply perform the following calculation to figure out the value of \\(M\\):
 
-$1 - 2^{-23}$
+\\(1 - 2^{-23}\\)
 
-In this case, this is the same as performing $2^{-1} + 2^{-2}+ ... +2^{-23}$ and results in the value `0.99999988079071`. Now we simply substitute in our values into the equation for subnormal numbers:
+In this case, this is the same as performing \\(2^{-1} + 2^{-2}+ ... +2^{-23}\\) and results in the value `0.99999988079071`. Now we simply substitute in our values into the equation for subnormal numbers:
 
-$(-1)^{0} × 2^{-126} × 0.99999988079071$
+\\((-1)^{0} × 2^{-126} × 0.99999988079071\\)
 
 Rearranging this slightly and we end up with:
 
-$0.99999988079071 × 2^{-126}$
+\\(0.99999988079071 × 2^{-126}\\)
 
-Note that in this equation, our `exponent` value is $emin$ . This results in the largest possible subnormal value of $1.17549421069244 × 10^{-38}$ , which is still a very small number regardless. For reference; the hexadecimal string `0x00000001` will result in the smallest possible subnormal single precision floating-point value.
+Note that in this equation, our `exponent` value is \\(emin\\) . This results in the largest possible subnormal value of \\(1.17549421069244 × 10^{-38}\\) , which is still a very small number regardless. For reference; the hexadecimal string `0x00000001` will result in the smallest possible subnormal single precision floating-point value.
 
 Now we have learned how to appropriately deal with subnormal values, there are a few other exceptions that you will need to be aware of when converting hexadecimal strings into floating-point numbers.
 
@@ -380,35 +380,35 @@ Now we have learned how to appropriately deal with subnormal values, there are a
 
 While testing out IEEE 754 floating-point conversions, you may attempt to calculate the floating-point value of a hexadecimal string consisting of all zeroes, such as `0x00000000`. This is interesting, because you may be able to look at this and immediately realise that the resulting floating-point value must also be `0`. However, how can you ascertain whether it is positive or negative?
 
-Ordinarily, the number `0` does not have a sign, but when dealing with IEEE 754 floating point values, this is not the case, and we can obtain the result of a [signed zero](https://en.wikipedia.org/wiki/Signed_zero). In terms of the floating-point arithmetic we have laid out thus far, a signed zero will occur when the `exponent` $e$ and `significand` $M$ values are all zeroes. The only difference between a positive and negative zero is dependant on the value of the `sign` $s$.
+Ordinarily, the number `0` does not have a sign, but when dealing with IEEE 754 floating point values, this is not the case, and we can obtain the result of a [signed zero](https://en.wikipedia.org/wiki/Signed_zero). In terms of the floating-point arithmetic we have laid out thus far, a signed zero will occur when the `exponent` \\(e\\) and `significand` \\(M\\) values are all zeroes. The only difference between a positive and negative zero is dependant on the value of the `sign` \\(s\\).
 
-Therefore, we can say that there are two further special exceptions in the floating-point arithmetic which occur when $e$ and $M$ are all zeroes. A positive zero can be obtained by converting the hexadecimal string `0x00000000` into a single precision floating-point value, and a negative zero can be obtained from the hexadecimal string `0x80000000`. The reason this particular string results in a negative zero is very easy to notice when written in binary format:
+Therefore, we can say that there are two further special exceptions in the floating-point arithmetic which occur when \\(e\\) and \\(M\\) are all zeroes. A positive zero can be obtained by converting the hexadecimal string `0x00000000` into a single precision floating-point value, and a negative zero can be obtained from the hexadecimal string `0x80000000`. The reason this particular string results in a negative zero is very easy to notice when written in binary format:
 
 - `1000 0000 0000 0000 0000 0000 0000 0000`
 
-As you can see, the `sign` $s$ value is `1`, which immediately informs us that the resulting value will be negative, as per $(-1)^1$ . Since the rest of the binary value are zeroes, we can simply say that the resulting floating-point number is `-0`[^16].
+As you can see, the `sign` \\(s\\) value is `1`, which immediately informs us that the resulting value will be negative, as per \\((-1)^1\\) . Since the rest of the binary value are zeroes, we can simply say that the resulting floating-point number is `-0`[^16].
 
 ### Signed Infinity
 
-Another special quantity which can arise from IEEE 754 floating-point calculations is either positive or negative infinity. Looking through the logic we have demonstrated so far, you may have noticed that we ended up with a subnormal value when the adjusted `exponent` $e$ was `-126`. However, what happens when the value of $e$ is on the other end of the spectrum at `128`?
+Another special quantity which can arise from IEEE 754 floating-point calculations is either positive or negative infinity. Looking through the logic we have demonstrated so far, you may have noticed that we ended up with a subnormal value when the adjusted `exponent` \\(e\\) was `-126`. However, what happens when the value of \\(e\\) is on the other end of the spectrum at `128`?
 
-This event occurs when all of the bits in the `exponent` are `1`, meaning when we calculate the `biased exponent`, it will be `255` (for single precision numbers). Adjusting this value to account for the `bias`, we end up with `128` as the value for $e$ , which falls outside of our defined range for normal and subnormal numbers[^17].
+This event occurs when all of the bits in the `exponent` are `1`, meaning when we calculate the `biased exponent`, it will be `255` (for single precision numbers). Adjusting this value to account for the `bias`, we end up with `128` as the value for \\(e\\) , which falls outside of our defined range for normal and subnormal numbers[^17].
 
 It should be noted in this case that the term 'inifinity' is used to refer to floating-point values which would otherwise cause an overflow. In the context of binary floating-point computation; an 'overflow' pertains to the problems computers will encounter when representing very large numbers. Similarly, the term 'underflow' is used to describe the issue of computers representing very small numbers.
 
-Therefore, the IEEE 754 standard accounts for this and specifies that when the value of $e$ is $emax + 1$ and the `significand` $M$ is all `0`, then the result will be INF (infinity). As seen before with signed zero, the infinity result can also be either positive or negative, depending on the value of the `sign` $s$ bit.
+Therefore, the IEEE 754 standard accounts for this and specifies that when the value of \\(e\\) is \\(emax + 1\\) and the `significand` \\(M\\) is all `0`, then the result will be INF (infinity). As seen before with signed zero, the infinity result can also be either positive or negative, depending on the value of the `sign` \\(s\\) bit.
 
 According to these rules, in terms of single precision floating-point values; the hexadecimal string `0x7f80000` will result in positive infinity (+INF), while the hexadecimal string `0xff800000` will result in negative infinity (-INF).
 
 ### NaN (Non-Numbers)
 
-The final special quantity which can arise from IEEE 754 floating-point calculations is [NaN](https://en.wikipedia.org/wiki/NaN), or Not-a-Number (commonly referred to as Non-Numbers). NaNs occur in floating-point values when the `exponent` $e$ is $emax +1$ , similar to the aforementioned signed infinity values. However, this time the difference being that the `significand` $M$ is non-zero[^18].
+The final special quantity which can arise from IEEE 754 floating-point calculations is [NaN](https://en.wikipedia.org/wiki/NaN), or Not-a-Number (commonly referred to as Non-Numbers). NaNs occur in floating-point values when the `exponent` \\(e\\) is \\(emax +1\\) , similar to the aforementioned signed infinity values. However, this time the difference being that the `significand` \\(M\\) is non-zero[^18].
 
 A non-number simply refers to an invalid computational mathematical operation, the most famous example being the division of any number by `0`. Another example is attempting to perform the square root of a negative number. In the case of floating-point values, the non-zero `significand` separates NaNs from signed infinity and becomes an impossible mathematical operation because you cannot use infinity in arithmetic.
 
-Thus, the IEEE 754 standard specifies that in cases where the `exponent` $e$ value is $emax + 1$ and the value of the `significant` $M$ is non-zero; the resulting floating-point number will be considered NaN.
+Thus, the IEEE 754 standard specifies that in cases where the `exponent` \\(e\\) value is \\(emax + 1\\) and the value of the `significant` \\(M\\) is non-zero; the resulting floating-point number will be considered NaN.
 
-Interestingly, it is worth noting that unlike the signed zero and signed infinity exceptions, the `sign` $s$ bit in the computation of Non-Numbers makes no difference. In other words; there is no distinction between positive NaN or negative NaN. Therefore, we can say, for example; the hexadecimal string `0xffc00001` will result in a NaN. This is much easier to ascertain by examining this string in binary form:
+Interestingly, it is worth noting that unlike the signed zero and signed infinity exceptions, the `sign` \\(s\\) bit in the computation of Non-Numbers makes no difference. In other words; there is no distinction between positive NaN or negative NaN. Therefore, we can say, for example; the hexadecimal string `0xffc00001` will result in a NaN. This is much easier to ascertain by examining this string in binary form:
 
 - `1 11111111 10000000000000000000001`
 
@@ -420,7 +420,7 @@ Although much of my research focused on single precision values, the logic is ve
 
 - `0100000000001001000111101011100001010001111010111000010100011111`
 
-In the case of double precision values, the `exponent` $e$ consists of `11` bits (with a `bias` of `1023`) and the `significand` $M$ consists of `52` bits, as follows:
+In the case of double precision values, the `exponent` \\(e\\) consists of `11` bits (with a `bias` of `1023`) and the `significand` \\(M\\) consists of `52` bits, as follows:
 
 ```plaintext
 SIGN:               0 (Number is positive)
@@ -431,15 +431,15 @@ MANTISSA:           1001000111101011100001010001111010111000010100011111
 
 By breaking down the binary into these parts, we can quickly ascertain whether we are dealing with a subnormal or other special quantity. In this case, we have a normal number, so no exceptional calculations need to factor into our conversion. If you will recall, the formula for the conversion that we will use for normal numbers is as follows:
 
-$(-1)^{s} × 2^{e-bias} × M$
+\\((-1)^{s} × 2^{e-bias} × M\\)
 
-We already know $s$ is `0` so the result will be positive. The adjusted `biased exponent` $e$ is `1` and the `significand` $M$ will be `1.1001000111101011100001010001111010111000010100011111`. To adjust the `singificand`, we use the arithmetic we outlined earlier, which will give us a final $M$ value of:
+We already know \\(s\\) is `0` so the result will be positive. The adjusted `biased exponent` \\(e\\) is `1` and the `significand` \\(M\\) will be `1.1001000111101011100001010001111010111000010100011111`. To adjust the `singificand`, we use the arithmetic we outlined earlier, which will give us a final \\(M\\) value of:
 
 - `1.57000000000000006217`
 
 Now we can substitute these values into the formula, providing us with our final calculation in scientific notation, as follows:
 
-$1.57000000000000006217 × 2^{1}$
+\\(1.57000000000000006217 × 2^{1}\\)
 
 Which results in our double precision floating-point value of `3.14`. Therefore, I have been able to successfully apply the arithmetic outlined in the IEEE 754 standard to convert a 64-bit hexadecimal value into a floating-point number, which I was previously unable to do within the disassembly tool.
 
@@ -485,7 +485,7 @@ Writing the functions covering the extraction of the `sign`, `biased exponent` a
 
 Starting with single precision values, I used `awk` to separate the binary string into the `sign`, `exponent` and `significand`. I then wrote a variable to adjust the decimal `exponent` value based on the `bias` for the precision level I was working at (e.g. 127 for single precision). Dealing with the `significand` took a little more tweaking, since there is no method (that I know of) in `BASH` to convert a binary string with a decimal point into a base-10 number.
 
-Therefore, I came up with the idea to initialise the mantissa as an array and then iterate through each bit, mapped to another numbered array, using a `for` loop and an `awk` calculation to perform $2^x$ where $x$ is every bit equal to `1`. This sounds more complicated than it actually is, but then all I had to do from here was add the resulting values together and I get my decimal value for $M$ .
+Therefore, I came up with the idea to initialise the mantissa as an array and then iterate through each bit, mapped to another numbered array, using a `for` loop and an `awk` calculation to perform \\(2^x\\) where \\(x\\) is every bit equal to `1`. This sounds more complicated than it actually is, but then all I had to do from here was add the resulting values together and I get my decimal value for \\(M\\) .
 
 Substituting these values into the formula for floating-point calculations was simple using a command in `gawk`. For instance, the `gawk` command I used for the final calculation for double precision normal floating-point numbers was as follows:
 
@@ -495,17 +495,17 @@ gawk -M -v ROUNDMODE="Z" '{print (-1)**'$sign'*2**('$biased_exponent'-1023)*(1+'
 
 Here, you can see that I adjust the `biased exponent` by subtracting `1023` from the value, as per the double precision value in this case. Since this is a normal number, `1` is added to the `significand` to account for the 'hidden bit'. You will note that I had to use `gawk` so I could take advantage of the `-M` parameter, which performs all integer arithmetic using [GMP](https://gmplib.org/) arbitrary-precision integers. The `ROUNDMODE` variable passed to `gawk` changes the rounding mode to use for arbitrary precision arithmetic on numbers.
 
-When it came to dealing with subnormal numbers, I used an `if` statement to check the $e$ and $M$ values to ensure they matched the criteria for subnormals. Then I could substitute the values into the following calculation (double precision in this case):
+When it came to dealing with subnormal numbers, I used an `if` statement to check the \\(e\\) and \\(M\\) values to ensure they matched the criteria for subnormals. Then I could substitute the values into the following calculation (double precision in this case):
 
 ```shell
 gawk -M -v ROUNDMODE="Z" '{print (-1)**'$sign'*2**(-1022)*'$significand'}'
 ```
 
-The difference here is that there is no need to specify the `exponent` as a variable. For subnormals, the value of $e$ will be equal to $emin$, which in this case would always be `-1022` for double precision floating-point values. Finally, the only other difference is that the `significand` is left as is, with the 'hidden bit' at `0`.
+The difference here is that there is no need to specify the `exponent` as a variable. For subnormals, the value of \\(e\\) will be equal to \\(emin\\), which in this case would always be `-1022` for double precision floating-point values. Finally, the only other difference is that the `significand` is left as is, with the 'hidden bit' at `0`.
 
-The last issues I had to account for were the exceptions for the special quantities; signed zero, signed infinity and NaN. Again, this was very easy to implement as multiple `if` statements to check (and compare) the values of the `sign`, `exponent` and `significand` to understand how to treat the output value. For instance, should the value of $e$ be `0`, $M$ be non-zero and $s$ be `1` then the result would be negative zero.
+The last issues I had to account for were the exceptions for the special quantities; signed zero, signed infinity and NaN. Again, this was very easy to implement as multiple `if` statements to check (and compare) the values of the `sign`, `exponent` and `significand` to understand how to treat the output value. For instance, should the value of \\(e\\) be `0`, \\(M\\) be non-zero and \\(s\\) be `1` then the result would be negative zero.
 
-Unfortunately, one of the issues I ran into when testing this script early on was with the rounding of very small numbers. For instance, when I supplied a hexadecimal input string such as `0x00800000`, which would normally convert into the smallest possible normal number of $1.1754943508 × 10^{−38}$ , it would instead output `0.0000000000000000000000000000`. I eventually realised that this was an issue with the rounding which I could not accurately account for. Hence why I had to use `gawk` as outlined earlier.
+Unfortunately, one of the issues I ran into when testing this script early on was with the rounding of very small numbers. For instance, when I supplied a hexadecimal input string such as `0x00800000`, which would normally convert into the smallest possible normal number of \\(1.1754943508 × 10^{−38}\\) , it would instead output `0.0000000000000000000000000000`. I eventually realised that this was an issue with the rounding which I could not accurately account for. Hence why I had to use `gawk` as outlined earlier.
 
 ## Data Analysis
 
