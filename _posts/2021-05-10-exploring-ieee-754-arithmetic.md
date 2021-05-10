@@ -51,7 +51,7 @@ After compiling this code on my Linux system using `gcc`, I then opened the bina
 
 Here, I simply analysed the binary (`aaa`), listed the functions (`afl`), jumped to the address containing the `main` function, and then ran the 'print disassembled function' (`pdf`) command. The resulting output from this command was a low-level look at the `C` source code, but written in assembly (machine) language. The relevant part of this code has been provided below, wherein I also changed the `r2` variable names to make the code slightly more readable:
 
-```asm
+```assembly
 push rbp
 mov rbp, rsp
 mov dword [int], 0x2a
@@ -174,6 +174,7 @@ You should be able to immediately see how much more convenient it is to write a 
 In this formula, \\(n\\) is our `exponent` value, denoted by an integer. The \\(M\\) value is known as the `significand` (also commonly referred to as the `coefficient` or `mantissa`)[^3]. Using the scientific notation for the mass of a proton above, we can say that the exponent is `-27` and the `significand` is `1.672621898`. However, it is important to note that this value can also be written as the following:
 
 \\(16.72621923 × 10^{-28}\\)
+
 \\(167.2621923 × 10^{-29}\\)
 
 Hence, this is why we would say that the leading `1` is the most significant digit because its exponent is `-27`. It is also important to note for future reference that in scientific notation, the value is typically always `normalized`. This simply means that there must be one non-zero digit before the decimal point, which can be either positive or negative. In the case of the two additional notations above, they can be considered `de-normalized`, as they consist of multiple digits before the decimal point. Interestingly, this is why such values are referred to as 'floating-point' numbers, as the decimal point seemingly 'floats' between the significant digits.
@@ -248,11 +249,11 @@ PARAMETER:	| Sign |         Exponent         |                                Si
 
 Here we can see that `23` bits are allocated for the `significand`, `8` bits for the `exponent` and the final bit for our `sign`. When dealing with double (64-bit) or quadruple (128-bit) precision values, simply refer to the following table to ascertain how many bits in the binary string to assign to each parameter[^9]:
 
-|     | SINGLE | DOUBLE | QUADRUPLE |
-| --- | --- | --- | --- |
-| **SIGN** | 1   | 1   | 1   |
-| **EXPONENT** | 8   | 11  | 15  |
-| **SIGNIFICAND** | 23  | 52  | 112 |
+| | SINGLE | DOUBLE | QUADRUPLE |
+| - | :-: | :-: | :-: |
+| **SIGN** | 1 | 1 | 1 |
+| **EXPONENT** | 8 | 11 | 15 |
+| **SIGNIFICAND** | 23 | 52 | 112 |
 
 ### Sign
 
@@ -297,8 +298,8 @@ This results in `127`, which we already know is the \\(emax\\) value for 8-bit `
 Interestingly, since we already know the number \\(n\\) of bits in the `exponent` \\(e\\) between single, double and quadruple precision values, we can pre-calculate their `bias` by using the formula for \\(k\\) above:
 
 |     | SINGLE | DOUBLE | QUADRUPLE |
-| --- | --- | --- | --- |
-| **EXPONENT BITS** | 8   | 11  | 15  |
+| - | :-: | :-: | :-: |
+| **EXPONENT BITS** | 8 | 11 | 15 |
 | **BIAS FORMULA** | \\(2^{8-1}-1\\) | \\(2^{11-1}-1\\) | \\(2^{15-1}-1\\) |
 | **BIAS VALUE (\\(emax\\))** | 127 | 1023 | 16383 |
 | **BIAS VALUE (\\(emin\\))** | -126 | -1022 | -16382 |
