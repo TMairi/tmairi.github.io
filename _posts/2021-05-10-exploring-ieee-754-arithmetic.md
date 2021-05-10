@@ -159,9 +159,9 @@ To further understand this concept of significant figures and exponents, which p
 
 ### Scientific Notation
 
-In the world of physics; particularly astronomy and astrophysics, scientists will often find themselves performing calculations with exceptionally large or small numbers. Writing these numbers out normally as they appear would be inefficient and tedious. Therefore, scientific notation is commonly used instead to represent these values. For instance, the mass of a proton (in kilograms - `kg`), often denoted by $p$ or $p^+$, written as a real number is as follows[^2]:
+In the world of physics; particularly astronomy and astrophysics, scientists will often find themselves performing calculations with exceptionally large or small numbers. Writing these numbers out normally as they appear would be inefficient and tedious. Therefore, scientific notation is commonly used instead to represent these values. For instance, the mass of a proton (in kilograms - `kg`), often denoted by \\(p\\) or \\(p^+\\), written as a real number is as follows[^2]:
 
-$$0.000000000000000000000000001672621923$$
+\\(0.000000000000000000000000001672621923\\)
 
 Whereas in scientific notation, this value would be written as follows:
 
@@ -169,12 +169,12 @@ Whereas in scientific notation, this value would be written as follows:
 
 You should be able to immediately see how much more convenient it is to write a very small value in this notation. We can easily illustrate this notation by converting it into a formula, as follows:
 
-$M × 10^n$
+\\(M × 10^n\\)
 
-In this formula, $n$ is our `exponent` value, denoted by an integer. The $M$ value is known as the `significand` (also commonly referred to as the `coefficient` or `mantissa`)[^3]. Using the scientific notation for the mass of a proton above, we can say that the exponent is `-27` and the `significand` is `1.672621898`. However, it is important to note that this value can also be written as the following:
+In this formula, $n$ is our `exponent` value, denoted by an integer. The \\(M\\) value is known as the `significand` (also commonly referred to as the `coefficient` or `mantissa`)[^3]. Using the scientific notation for the mass of a proton above, we can say that the exponent is `-27` and the `significand` is `1.672621898`. However, it is important to note that this value can also be written as the following:
 
-$16.72621923 × 10^{-28}$
-$167.2621923 × 10^{-29}$
+\\(16.72621923 × 10^{-28}\\)
+\\(167.2621923 × 10^{-29}\\)
 
 Hence, this is why we would say that the leading `1` is the most significant digit because its exponent is `-27`. It is also important to note for future reference that in scientific notation, the value is typically always `normalized`. This simply means that there must be one non-zero digit before the decimal point, which can be either positive or negative. In the case of the two additional notations above, they can be considered `de-normalized`, as they consist of multiple digits before the decimal point. Interestingly, this is why such values are referred to as 'floating-point' numbers, as the decimal point seemingly 'floats' between the significant digits.
 
