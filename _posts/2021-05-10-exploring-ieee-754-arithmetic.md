@@ -5,6 +5,7 @@ date: 2021-05-10 19:33:00 +0100
 categories: [Linux, Mathematics]
 tags: [bash, linux, scripting, mathematics]
 math: true
+mermaid: true
 comments: false
 ---
 ## Foreword
