@@ -1,7 +1,7 @@
 /*
  * Calculate the Timeago
  */
-
+/*
 $(function() {
 
   const timeagoElem = $(".timeago");
@@ -9,7 +9,7 @@ $(function() {
   let toRefresh = timeagoElem.length;
 
   let intervalId = void 0;
-/*
+
   function timeago(iso, preposition) {
     let now = new Date();
     let past = new Date(iso);
@@ -53,18 +53,19 @@ $(function() {
     return "just now";
   }
 */
+/*
   function updateTimeago() {
     $(".timeago").each(function() {
       if ($(this).children("i").length > 0) {
         let node = $(this).children("i");
-        let date = node.text(); /* ISO Date: "YYYY-MM-DDTHH:MM:SSZ" */
+        let date = node.text(); 
         $(this).text(timeago(date, $(this).attr("prep")));
         $(this).append(node);
       }
     });
 
     if (toRefresh === 0 && typeof intervalId !== "undefined") {
-      clearInterval(intervalId); /* stop interval */
+      clearInterval(intervalId); 
     }
     return toRefresh;
   }
@@ -73,8 +74,9 @@ $(function() {
     return;
   }
 
-  if (updateTimeago() > 0) { /* run immediately */
-    intervalId = setInterval(updateTimeago, 60000); /* run every minute */
+  if (updateTimeago() > 0) { 
+    intervalId = setInterval(updateTimeago, 60000);
   }
 
 });
+*/
