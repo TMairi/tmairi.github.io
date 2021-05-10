@@ -51,7 +51,7 @@ After compiling this code on my Linux system using `gcc`, I then opened the bina
 
 Here, I simply analysed the binary (`aaa`), listed the functions (`afl`), jumped to the address containing the `main` function, and then ran the 'print disassembled function' (`pdf`) command. The resulting output from this command was a low-level look at the `C` source code, but written in assembly (machine) language. The relevant part of this code has been provided below, wherein I also changed the `r2` variable names to make the code slightly more readable:
 
-```assembly
+```
 push rbp
 mov rbp, rsp
 mov dword [int], 0x2a
@@ -69,7 +69,7 @@ Reviewing assembly code like the sample above can be quite intimidating, however
 
 Continuing, the hexadecimal value `0x2a` is then stored in the `rbp-0x4` register (which I renamed to `int`, given I know the source code already) and then the value `0x4d` is stored in the `rbp-0x5` register (renamed to `char`). These two values can already be cross-referenced with our source code, as converting the them into decimal (base 10) using `rax2` gives us the value of our variables:
 
-```shell
+```sh
 [0x00401106]> rax2 0x2a
 42
 [0x00401106]> rax2 0x4d
