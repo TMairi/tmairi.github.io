@@ -3,9 +3,9 @@
   See: /assets/js/_utils/timeage.js
 -->
 
-{% assign tooltip_df = site.data.date_format.tooltip | default: '%a, %b %e, %Y, %l:%M %p %z' %}
-{% assign post_long_df = site.data.date_format.post.long | default: '%b %e, %Y' %}
-{% assign post_short_df = site.data.date_format.post.short | default: '%b %e' %}
+{% assign tooltip_df = site.data.date_format.tooltip | default: '%Y-%m-%d, %l:%M %p %z' %}
+{% assign post_long_df = site.data.date_format.post.long | default: '%Y-%m-%d' %}
+{% assign post_short_df = site.data.date_format.post.short | default: '%Y-%m-%d' %}
 
 <span class="timeago {% if include.class %}{{ include.class }}{% endif %}"
   {% if include.tooltip %}
@@ -23,7 +23,7 @@
   {% if post_year == this_year %}
     {{ include.date | date: post_long_df }}
   {% else %}
-    {{ include.date | date: post_long_df }}
+    {{ include.date | date: post_short_df }}
   {% endif %}
   
   <i class="unloaded">{{ include.date | date_to_xmlschema }}</i>
