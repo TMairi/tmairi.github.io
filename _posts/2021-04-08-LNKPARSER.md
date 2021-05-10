@@ -85,11 +85,11 @@ I also encountered a problem when adding output functionality to the script, as 
 
 Once the primary functionality of the script was written and fully tested, I could review the results. Most importantly; the script works well and does not rely on external tools or libraries to parse out the LNK data structures. Every LNK sample file I had was tested and barring a few sparse files, each one produced data which could prove very useful for a forensic examiner. However, there were a few issues during the analysis phase I noticed:
 
-1.  The script does not handle unicode characters well
+* The script does not handle unicode characters well
 
 Only a small handful of the files tested appeared to contain unicode characters in the file paths, which caused an issue with the parsers combining data sets. This is not a major issue as the data is still readable, just not in a very nice format. This would need more testing with LNK files before I can definitively fix the issue.
 
-2.  The script does not parse out Network Share data
+* The script does not parse out Network Share data
 
 Unfortunately, none of the samples I had to hand contained Network Share data under the `CommonNetworkRelativeLink` structure. Therefore, no parsers for this data have been written as I would not have been able to test them properly. Again, this requires more sample files, preferably with valid structures containing data in this particular structure to remedy.
 
