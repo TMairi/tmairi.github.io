@@ -72,6 +72,7 @@ Continuing, the hexadecimal value `0x2a` is then stored in the `rbp-0x4` registe
 ```
 [0x00401106]> rax2 0x2a
 42
+
 [0x00401106]> rax2 0x4d
 77
 ```
@@ -89,7 +90,7 @@ The next two variables are a little bit more complicated. You might be tempted t
 4202512
 ```
 
-This is obviously not the correct value, and in fact, the hexadecimal string we converted does not refer to a value in of itself, but instead an address in memory. Your first clue that this may be related to floating numbers is the [movss](https://wiki.cheatengine.org/index.php?title=Assembler:Commands:MOVSS) command, which moves a single-precision floating-point value from a location in memory to another operand (typically an `XMM` register). In this case, a value at the memory address `0x00402010` is being stored in the `xmm0` register, before being copied to the `rbp-0xc` (renamed to `float`) register.
+This is obviously not the correct value, and in fact, the hexadecimal string we converted does not refer to a value in of itself, but instead an address in memory. Your first clue that this may be related to floating-point numbers is the [movss](https://wiki.cheatengine.org/index.php?title=Assembler:Commands:MOVSS) command, which moves a single-precision floating-point value from a location in memory to another operand (typically an `XMM` register). In this case, a value at the memory address `0x00402010` is being stored in the `xmm0` register, before being copied to the `rbp-0xc` (renamed to `float`) register.
 
 But what is the value in memory being pushed to the `xmm0` register? Well we know by looking at the source code that it must be the value `5.5`, the question is how do we extrapolate this value using `r2`? In fact, there are two ways we can ascertain the value being moved into the `xmm0` register. The first involves simply looking at a hexadecimal dump of the address being moved into the `xmm0` register, as follows:
 
@@ -99,7 +100,7 @@ But what is the value in memory being pushed to the `xmm0` register? Well we kno
 [ . . . ]
 ```
 
-In the output above, we can see the hexadecimal value `0x40b00000`, which could be our floating point value. To check, we can simply run `rax2` again using the `Fx` parameter to specify a floating-point number:
+In the output above, we can see the hexadecimal value `0x40b00000`, which could be our floating-point value. To check, we can simply run `rax2` again using the `Fx` parameter to specify a floating-point number:
 
 ```
 [0x00401106]> rax2 Fx40b00000
@@ -113,8 +114,10 @@ However, we can further verify that this is the correct value by examining the c
 ```
 [0x00401115]> dc
 hit breakpoint at: 0x40111d
+
 [0x0040111d]> dr xmm0
 0x00000000000000000000000040b00000
+
 [0x0040111d]> rax2 Fx00000000000000000000000040b00000
 5.500000f
 ```
@@ -127,10 +130,13 @@ If we repeat the process we used for the `float` variable, but this time for the
 [0x00401106]> pxq @ 0x00402018
 0x00402018  0x40091eb851eb851f  0x000000343b031b01   ...Q...@...;4...
 [ . . . ]
+
 [0x0040111d]> dc
 hit breakpoint at: 0x40112a
+
 [0x0040112a]> dr xmm0
 0x000000000000000040091eb851eb851f
+
 [0x0040112a]> rax2 Fx40091eb851eb851f
 126443839488.000000f
 ```
@@ -163,7 +169,7 @@ In the world of physics; particularly astronomy and astrophysics, scientists wil
 
 \\(0.000000000000000000000000001672621923\\)
 
-Whereas in scientific notation, this value would be written as follows:
+Whereas in scientific notation, this value would be written as:
 
 \\(1.672621923 × 10^{-27}\\)
 
