@@ -610,7 +610,7 @@ Reviewing the information I produced from my testing, I believe it should be hyp
 
 Overall, I hope that the results of the research I conducted here will provide a useful foundation for those looking to explore the AD1 file format further, or for those who may just want to understand how AD1 containers store and compress the file data. For this reason, I decided to include an executive summary of the primary findings resulting from my experiments to serve as a quick reference for those who may require it.
 
-If you have any recommendations or questions about the topics mentioned in this article, you can contact me on [Twitter](https://twitter.com/AstrumMairi).
+If you have any recommendations or questions about the topics mentioned in this article, please contact me on [Twitter](https://twitter.com/AstrumMairi).
 
 -- Mairi
 
