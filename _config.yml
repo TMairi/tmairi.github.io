@@ -2,10 +2,10 @@ theme: jekyll-theme-chirpy
 baseurl: ''
 lang: en-UK
 timezone: Europe/London
-title: "Mairi's Constant"
-tagline: Digital Forensic Scientist
+title: "Mairi's Blog"
+tagline: Science, Research & Development
 description: >-
-  DFIR, Digital Forensics, Security, Hacking, Linux, Physics, Linguistics
+  Physics, Science, Research, Linux, Electronics
 
 url: 'https://tmairi.github.io'
 github:
